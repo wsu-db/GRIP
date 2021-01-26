@@ -1,0 +1,644 @@
+<!doctype html>
+<html class="fixed">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <title>GRIP Demonstration</title>
+    <meta name="keywords" content="HTML5 Admin Template"/>
+    <meta name="description" content="JSOFT Admin - Responsive HTML5 Template">
+    <meta name="author" content="JSOFT.net">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- Web Fonts  -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light"
+          rel="stylesheet" type="text/css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="assets/vendor/magnific-popup/magnific-popup.css"/>
+    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/datepicker3.css"/>
+
+    <!-- Specific Page Vendor CSS -->
+    <link rel="stylesheet" href="assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css"/>
+    <link rel="stylesheet" href="assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="assets/vendor/morris/morris.css"/>
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/theme.css"/>
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/skins/default.css"/>
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/theme-custom.css">
+
+    <!-- Head Libs -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="assets/vendor/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/index.js"></script>
+
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <header class="header reset-header">
+
+
+        <!-- start: search & user box -->
+        <div class="center">
+            <h1 class="title1">GRIP Demonstration</h1>
+        </div>
+
+        <!-- end: search & user box -->
+    </header>
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+        <!-- start: sidebar -->
+        <aside id="sidebar-left" class="sidebar-left">
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+
+
+                            <h2 class="panel-title">Constraint Panel</h2>
+                            <p class="panel-subtitle"></p>
+                        </header>
+
+                        <div class="panel-body">
+                            <div id="rule-dis">
+
+                            </div>
+
+                        </div>
+                        <textarea class="form-control center" rows="3" placeholder="Input your rule"
+                                  id="rule-text" style="margin-top: 2px"></textarea>
+                        <footer class="panel-footer center">
+                            <button class="btn btn-primary btn-xs" id="load-rule">Load Constraints</button>
+                            <button class="btn btn-primary btn-xs" id="add-rule">Add Constraint</button>
+                        </footer>
+
+
+                    </section>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+
+
+                            <h2 class="panel-title">Graph Search</h2>
+
+                        </header>
+
+                        <div class="panel-body">
+                            <label class="panel-subtitle" style="font-size: 16px">SPARQL Query</label>
+                            <textarea class="form-control" rows="9" id="SPARQL" placeholder=""></textarea>
+                        </div>
+
+                        <div class="panel-body">
+                            <label class="panel-subtitle" style="font-size: 16px">Query Answer</label>
+                            <div id="table">
+
+                                <table class="table table-striped" id="queryanswer">
+                                    <thead class="thead-dark">
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+                        <footer class="panel-footer center" id="sparqlb">
+                            <button class="btn btn-primary btn-xs">Execute</button>
+                        </footer>
+
+                    </section>
+
+                </div>
+            </div>
+
+
+        </aside>
+        <!-- end: sidebar -->
+
+        <section role="main" class="content-body">
+
+
+            <div class="col-lg-8" style="margin-left: -30px">
+                <div class="row">
+                    <section class="panel ">
+                        <header class="panel-heading">
+                            <div class="panel-actions">
+                                <a href="#" class="fa fa-caret-down"></a>
+                                <a href="#" class="fa fa-times"></a>
+                            </div>
+                            <h2 class="panel-title">Configuration Panel</h2>
+                            <p class="panel-subtitle"></p>
+                        </header>
+
+                        <div class="panel-body" id="cbody">
+                            <div class="row">
+
+                                <div class="col-lg-4 ">
+
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label">Dataset</label>
+                                            <div class="input-group">
+                                                <select class="form-control" data-plugin-multiselect
+                                                        id="ms_example1">
+                                                    <option value="cheese" selected>KG-COVID-19</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label">Max Explanation Length</label>
+                                            <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default btn-number"
+                                                                data-type="minus" data-field="quant[1]">
+                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                        </button>
+                                                    </span>
+                                                <input type="text" name="quant[1]"
+                                                       class="form-control input-number col-xs-1" value="3" min="1"
+                                                       max="10">
+                                                <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default btn-number"
+                                                                    data-type="plus" data-field="quant[1]">
+                                                             <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                     </span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label">Max Exploration Size</label>
+                                            <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default btn-number"
+                                                                data-type="minus" data-field="quant[1]">
+                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                        </button>
+                                                    </span>
+                                                <input type="text" name="quant[1]"
+                                                       class="form-control input-number col-xs-1" value="3" min="1"
+                                                       max="10">
+                                                <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default btn-number"
+                                                                    data-type="plus" data-field="quant[1]">
+                                                             <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                     </span>
+                                            </div>
+                                        </div>
+
+
+                                    </form>
+
+
+                                </div>
+
+
+                                <div class="col-lg-8 tp">
+
+                                    <div class="row form-group center" id="mlink">
+                                        <div class="col-xs-3" id="triple-s">
+                                            <input placeholder="Triple-S"
+                                                   class="form-control col-xs-3" value="v1">
+
+                                        </div>
+
+                                        <div class="mb-md hidden-lg hidden-xl"></div>
+
+                                        <div class="col-md-4" id="triple-p">
+                                            <select class="form-select form-select-sm">
+                                                <option selected class="center disabled">Select Edge Type.</option>
+                                                <option class="center">testedBy</option>
+                                                <option class="center">causedBy</option>
+                                                <option class="center">possess</option>
+                                                <option class="center">sensitiveTo</option>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-md hidden-lg hidden-xl"></div>
+                                        <div class="col-xs-3" id="triple-o">
+                                            <input placeholder="Triple-O"
+                                                   class="form-control col-xs-3" value="v2"/>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row form-group center" id="matt">
+
+                                        <div class="col-xs-3">
+                                            <input placeholder="Triple-S"
+                                                   class="form-control col-xs-3" value="v1"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-select form-select-sm">
+                                                <option selected class="center disabled">Select Attribute.</option>
+                                                <option class="center">realm</option>
+                                                <option class="center">name</option>
+
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row form-group center" id="manswer">
+
+                                        <div class="col-xs-3 ">
+                                            <input placeholder="Triple-S"
+                                                   class="form-control col-xs-3" value="v1"/>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="row form-group" id="radios">
+                                        <div class="radio-custom radio-primary col-md-4">
+                                            <input id="awesome" name="miss" type="radio" value="awesome"/>
+                                            <label style="font-size: 16px" for="awesome">Missing Link</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary col-md-4">
+                                            <input id="very-awesome" name="miss" type="radio"
+                                                   value="very-awesome"/>
+                                            <label style="font-size: 16px" for="very-awesome">Missing Attribute</label>
+                                        </div>
+                                        <div class="radio-custom radio-primary col-md-4">
+                                            <input id="no-awesome" name="miss" type="radio"
+                                                   value="no-awesome"/>
+                                            <label style="font-size: 16px" for="no-awesome">Missing Answer</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" id="show-r">Execute</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </section>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-4">
+                <section class="panel" style="width: 460px">
+
+                    <header class="panel-heading">
+                        <div class="panel-actions">
+                            <a href="#" class="fa fa-caret-down"></a>
+                            <a href="#" class="fa fa-times"></a>
+                        </div>
+                        <h2 class="panel-title">Performance Panel</h2>
+                        <p class="panel-subtitle"></p>
+                    </header>
+
+                    <div class="panel-body" id="performance-p" style="height: 800px">
+                        <img src="1.png">
+                        <img src="2.png">
+
+                    </div>
+                </section>
+
+
+            </div>
+
+            <!-- start: page -->
+            <div class="row col-lg-8" id="expp-panel" style="margin-left:  -45px;margin-top: -250px">
+                <div >
+                    <section class="panel " id="exp-panel">
+                        <header class="panel-heading">
+                            <div class="panel-actions">
+                                <a href="#" class="fa fa-caret-down"></a>
+                                <a href="#" class="fa fa-times"></a>
+                            </div>
+                            <h2 class="panel-title">Explanation Panel</h2>
+                            <p class="panel-subtitle"></p>
+                        </header>
+
+                        <div class="panel-body" style="height: 480px">
+                            <div class="row ">
+
+                                <div class="col-lg-6 ">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+                                               role="tab"
+                                               aria-controls="home" aria-selected="true" style="font-size: 16px">Provenance Tree</a>
+                                        </li>
+
+
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                             aria-labelledby="home-tab">
+                                            <div id="mynetwork"></div>
+                                        </div>
+                                        <!--                                        <div class="input-group center">-->
+                                        <!--                                                    <span class="input-group-btn">-->
+                                        <!--                                                        <button type="button" class="btn btn-default btn-number">-->
+                                        <!--                                                        <span class="glyphicon glyphicon-arrow-left"></span>-->
+                                        <!--                                                        </button>-->
+                                        <!--                                                    </span>-->
+
+                                        <!--                                            <span class="input-group-btn">-->
+                                        <!--                                                            <button type="button" class="btn btn-default btn-number"-->
+                                        <!--                                                                    data-type="plus"  id="bright">-->
+                                        <!--                                                             <span class="glyphicon glyphicon-arrow-right"></span>-->
+                                        <!--                                                            </button>-->
+                                        <!--                                            </span>-->
+                                        <!--                                        </div>-->
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-lg-6 ">
+
+                                    <h5 i="lexp" style="font-size: 16px">
+                                        Explanation
+
+                                    </h5>
+                                    <div>
+                                        <div class="center e-forward" id="ntable">
+<!--                                            <table class="table table-striped table-bordered mttable1">-->
+<!--                                                <thead class="thead-dark">-->
+<!--                                                <tr class="center">-->
+<!--                                                    <th scope="col"></th>-->
+<!--                                                    <th class="center" scope="col">Match</th>-->
+<!--                                                    <th scope="col">Operator</th>-->
+<!--                                                    <th scope="col">Constraint</th>-->
+
+<!--                                                </tr>-->
+<!--                                                </thead>-->
+<!--                                                <tbody id="ntabletbody">-->
+<!--                                                <tr class="e-forward only">-->
+<!--                                                    <th scope="row">S1</th>-->
+<!--                                                    <td>(v2,v3)</td>-->
+<!--                                                    <td>add(v2,v3),testedBy</td>-->
+<!--                                                    <td>φ1</td>-->
+<!--                                                </tr>-->
+<!--                                                <tr class="e-forward">-->
+<!--                                                    <th scope="row">S2</th>-->
+<!--                                                    <td>(v1,v2)</td>-->
+<!--                                                    <td>merge(v1,v2)</td>-->
+<!--                                                    <td>φ2</td>-->
+<!--                                                </tr>-->
+<!--                                                <tr class="e-backward">-->
+<!--                                                    <th scope="row">S3</th>-->
+<!--                                                    <td>(v0,v1)</td>-->
+<!--                                                    <td>add(v1,v2),variantOf</td>-->
+<!--                                                    <td>φ3</td>-->
+<!--                                                </tr>-->
+
+<!--                                                </tbody>-->
+<!--                                            </table>-->
+
+
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                     <th></th>
+                                                    <th colspan="2">Answer to "why"</th>
+                                                    <th>Answer to "how"</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <th >S1</th>
+                                                    <td>(v2,v3)</td>
+                                                    <td>φ1</td>
+                                                    <td>insert((v2,v3),testedBy)</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th >S2</th>
+                                                    <td>(v1,v2)</td>
+                                                    <td>φ2</td>
+                                                    <td>merge(v1,v2)</td>
+
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class=" e-forward" style="margin-top: -80px" >
+                                        <h5 id="lexp" style="font-size: 16px">
+                                            Match
+
+                                        </h5>
+
+                                        <table class="table table-bordered table-striped">
+
+                                            <tbody>
+                                            <tr>
+
+                                                <td><div id= "forward1"></div></td>
+                                                <td><div id= "forward2"></div></td>
+
+
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+<!--                                        <table class="table table-striped table-bordered mttable">-->
+<!--                                            <thead class="thead-dark" >-->
+<!--                                            <tr class="center">-->
+
+<!--                                                <th class="center" scope="col">Constraint</th>-->
+<!--                                                <th scope="col">Match</th>-->
+<!--                                                <th scope="col">Attributes</th>-->
+
+<!--                                            </tr>-->
+<!--                                            </thead>-->
+<!--                                            <tbody>-->
+<!--                                            <tr class="e-forward only">-->
+
+<!--                                                <th class="" scope="row">φ1</th>-->
+<!--                                                <td class="">-->
+<!--                                                    <div id="m1"></div>-->
+<!--                                                </td>-->
+<!--                                                <td class="">-->
+<!--                                                    <ul>-->
+<!--                                                        <li>v2.name=SARS-COV-2</li>-->
+<!--                                                        <li>v2.realm=Riboriria</li>-->
+<!--                                                        <li>v3.name=rt-PCR</li>-->
+<!--                                                    </ul>-->
+<!--                                                </td>-->
+
+
+<!--                                            </tr>-->
+
+<!--                                            <tr class="e-forward">-->
+
+<!--                                                <th class="" scope="row">φ2</th>-->
+<!--                                                <td>-->
+<!--                                                    <div id="m2"></div>-->
+<!--                                                </td>-->
+<!--                                                <td class="">-->
+<!--                                                    <ul>-->
+<!--                                                        <li>v2.realm=Riboriria</li>-->
+<!--                                                        <li>v2.name=SARS-COV-2</li>-->
+<!--                                                        <li>v1.name=COVID Virus</li>-->
+<!--                                                    </ul>-->
+<!--                                                </td>-->
+
+<!--                                            </tr>-->
+
+<!--                                            <tr class="e-backward">-->
+
+<!--                                                <th class="" scope="row">φ3</th>-->
+<!--                                                <td>-->
+<!--                                                    <div id="m3"></div>-->
+<!--                                                </td>-->
+<!--                                                <td class="">-->
+<!--                                                    <ul>-->
+<!--                                                        <li>v0.name=501.vz</li>-->
+<!--                                                        <li>v0.realm=Riboriria</li>-->
+<!--                                                        <li>v1.name=COVID Virus</li>-->
+<!--                                                    </ul>-->
+<!--                                                </td>-->
+
+<!--                                            </tr>-->
+
+
+<!--                                            </tbody>-->
+<!--                                        </table>-->
+
+                                    </div>
+
+
+                                    <div class="form-group" id="e-radios">
+                                        <div class="row col-md-10">
+                                            <div class="radio-custom radio-primary col-md-6">
+                                                <input name="bidi" type="radio" value="forward"
+                                                       required/>
+                                                <label for="awesome" style="font-size: 16px">Forward</label>
+                                            </div>
+                                            <div class="radio-custom radio-primary col-md-4">
+                                                <input name="bidi" type="radio"
+                                                       value="backward"/>
+                                                <label for="very-awesome" style="font-size: 16px">Backward</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <button class="btn btn-primary " id="b-explore">Explore from the Node
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </section>
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+
+
+            </div>
+
+            <!-- end: page -->
+        </section>
+
+    </div>
+
+
+</section>
+
+<!-- Vendor -->
+<script src="assets/vendor/jquery/jquery.js"></script>
+<script src="assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
+<script src="assets/vendor/nanoscroller/nanoscroller.js"></script>
+<script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="assets/vendor/magnific-popup/magnific-popup.js"></script>
+<script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+<!-- Specific Page Vendor -->
+<script src="assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
+<script src="assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
+<script src="assets/vendor/jquery-appear/jquery.appear.js"></script>
+<script src="assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+<script src="assets/vendor/jquery-easypiechart/jquery.easypiechart.js"></script>
+<script src="assets/vendor/flot/jquery.flot.js"></script>
+<script src="assets/vendor/flot-tooltip/jquery.flot.tooltip.js"></script>
+<script src="assets/vendor/flot/jquery.flot.pie.js"></script>
+<script src="assets/vendor/flot/jquery.flot.categories.js"></script>
+<script src="assets/vendor/flot/jquery.flot.resize.js"></script>
+<script src="assets/vendor/jquery-sparkline/jquery.sparkline.js"></script>
+<script src="assets/vendor/raphael/raphael.js"></script>
+<script src="assets/vendor/morris/morris.js"></script>
+<script src="assets/vendor/gauge/gauge.js"></script>
+<script src="assets/vendor/snap-svg/snap.svg.js"></script>
+<script src="assets/vendor/liquid-meter/liquid.meter.js"></script>
+<script src="assets/vendor/jqvmap/jquery.vmap.js"></script>
+<script src="assets/vendor/jqvmap/data/jquery.vmap.sampledata.js"></script>
+<script src="assets/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
+<script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.africa.js"></script>
+<script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.asia.js"></script>
+<script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.australia.js"></script>
+<script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>
+<script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>
+<script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
+
+<!-- Theme Base, Components and Settings -->
+<script src="assets/javascripts/theme.js"></script>
+
+<!-- Theme Custom -->
+<script src="assets/javascripts/theme.custom.js"></script>
+
+<!-- Theme Initialization Files -->
+<script src="assets/javascripts/theme.init.js"></script>
+
+<script src="assets/javascripts/index.js"></script>
+<!-- Examples -->
+<script src="assets/javascripts/dashboard/examples.dashboard.js"></script>
+
+</body>
+</html>
